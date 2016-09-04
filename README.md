@@ -2,13 +2,13 @@
 
 [![Build Status](https://travis-ci.org/corllete/silex-mongodb-provider.svg?branch=master)](https://travis-ci.org/corllete/silex-mongodb-provider)
 
-
-Silex MongoDB Service Provider - integrates [Mongo PHP Library](https://github.com/mongodb/mongo-php-library) 
+Silex 2.x MongoDB Service Provider - integrates [Mongo PHP Library](https://github.com/mongodb/mongo-php-library) 
 with [Silex 2.x](https://github.com/silexphp/Silex)
 
 ## Requirements
-- php 5.6+ || 7.0+
+- PHP 5.6+ || 7.0+
 - php-mongodb (ext-mongodb)
+- Silex 2.x
 
 ## Installation
 
