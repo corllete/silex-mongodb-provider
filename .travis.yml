@@ -1,0 +1,15 @@
+language: php
+
+services: mongodb
+
+php:
+  - 5.6
+  - 7.0
+
+before_script:
+  - pecl install -f mongodb
+#  - echo 'extension=mongodb.so' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+  - php --ri mongodb
+  - composer --no-interaction --prefer-source install
+
+script: phpunit --coverage-text --verbose

@@ -1,0 +1,8 @@
+composer.phar
+vendor/
+phpunit.xml
+bin/
+coverage/
+.idea/
+
+

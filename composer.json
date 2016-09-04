@@ -1,0 +1,30 @@
+{
+    "name": "corllete/silex-mongodb-provider",
+    "description": "Silex MongoDB Service Provider - Mongo PHP Library",
+    "keywords": ["corllete", "mongodb", "mongo", "silex", "php", "php-library"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Miro Yovchev",
+            "email": "m.yovchev@corllete.com"
+        }
+    ],
+    "require": {
+        "php": "~5.6||~7.0",
+        "mongodb/mongodb": "^1.0.0",
+        "pimple/pimple": "~3.0",
+        "ext-mongodb": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.5"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-4": { "Corllete\\SilexMongoDB\\" : "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Corllete\\SilexMongoDB\\Tests\\" : "tests/" }
+    }
+}
