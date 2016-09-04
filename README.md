@@ -1,5 +1,8 @@
 # silex-mongodb-provider
 
+[![Build Status](https://travis-ci.org/corllete/silex-mongodb-provider.svg?branch=master)](https://travis-ci.org/corllete/silex-mongodb-provider)
+
+
 Silex MongoDB Service Provider - integrates [Mongo PHP Library](https://github.com/mongodb/mongo-php-library) 
 with [Silex 2.x](https://github.com/silexphp/Silex)
 
