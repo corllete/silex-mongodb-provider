@@ -1,7 +1,7 @@
 {
     "name": "corllete/silex-mongodb-provider",
-    "description": "Silex MongoDB Service Provider - Mongo PHP Library",
-    "keywords": ["corllete", "mongodb", "mongo", "silex", "php", "php-library"],
+    "description": "Silex 2.x MongoDB Service Provider - MongoDB PHP Library",
+    "keywords": ["mongodb", "mongo", "silex", "php", "php library", "corllete"],
     "license": "MIT",
     "authors": [
         {
