@@ -76,11 +76,9 @@ class MongoDBServiceProvider implements ServiceProviderInterface
         $ns  = $this->namespace;
         $mns = $this->multiNamespace;
 
-        // [default] mongo.default_options
         $app[$ns.'.default_options'] = isset($app[$ns.'.default_options']) ? $app[$ns.'.default_options'] : [];
         $app[$ns.'.default_options'] += self::$defaultOptions;
 
-        // [default] mongo.factory
         $app[$ns.'.factory'] = $app->protect(
             function (array $options = []) use ($app, $ns) {
                 $options += $app[$ns.'.default_options'];
@@ -101,7 +99,6 @@ class MongoDBServiceProvider implements ServiceProviderInterface
             }
         );
 
-        // init configuration
         $app[$mns.'.options.init'] = $app->protect(
             function () use ($app, $ns, $mns) {
                 static $done = false;
@@ -111,13 +108,11 @@ class MongoDBServiceProvider implements ServiceProviderInterface
                 }
                 $done = true;
 
-                // both single and multi options provided - NOPE!
                 if (isset($app[$ns.'.options']) && isset($app[$mns.'.options'])) {
                     throw new \LogicException("Illegal configuration - choose either single or multi connection setup", 1);
                     
                 }
 
-                // it's single setup, convert to multi
                 if (!isset($app[$mns.'.options'])) {
                     $singleOptions = isset($app[$ns.'.options']) ? $app[$ns.'.options'] : [];
                     $singleOptions += $app[$ns.'.default_options'];
@@ -127,12 +122,9 @@ class MongoDBServiceProvider implements ServiceProviderInterface
                     ];
                 }
 
-                // set default label reference
                 if (isset($app[$mns.'.options']['default'])) {
-                    // if there is 'default' connection configuration, force it default
                     $app[$mns.'.default'] = 'default';
                 } elseif (!isset($app[$mns.'.default'])) {
-                    // get first as default
                     $tmp = $app[$mns.'.options'];
                     reset($tmp);
                     $app[$mns.'.default'] = key($tmp);
@@ -140,7 +132,6 @@ class MongoDBServiceProvider implements ServiceProviderInterface
             }
         );
 
-        // [default] mongos
         $app[$mns] = function ($app) use ($ns, $mns) {
             $app[$mns.'.options.init']();
 
@@ -158,7 +149,6 @@ class MongoDBServiceProvider implements ServiceProviderInterface
             return $mongos;
         };
 
-        // [default] mongo
         $app[$ns] = function ($app) use ($mns) {
             $dbs = $app[$mns];
 
