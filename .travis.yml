@@ -1,22 +1,18 @@
 notifications:
-    email: false
-
+  email: false
+  slack:
+    rooms:
+      secure: g38Fc5x25mha3Whe1YVdf/Piy5FVAGkJupFLKG/+EpNAl0hmFk/5kME9EnojeQ7K/TsO0CMvbigOsppPxyfS44brGPj6l/PoCR3oxY6SafDQvgvYRg2ieoA0lpTiqAscvc0AaaSv294RH6jJYTphpJQ7k7rqUiRQeLQbPS3Mj/DLIX77tEe/OWBVWuuVzNZ0rx6/iheVLUt1IpQWlx45GqdX04VU2dmDVCoeuCMhPD5IQd7MApj4+ypWcrQBeXfveNqDEaDh52nV8SVmJI4tj6SJwZUfNCi6zSiIS27MdtmFpdHxGgzhaFV9Yc37wcZO2+Y58Tf4v9NHpBkhttVP+mnzWSbmPNrKrWczlGnS7mti5h8IaBAvUDJBD01Kn4GtKYLDL3G49Va1tXdSLgAgb0lmJWhtfDE35KHpHyuUKi2GK+Hh2LJszbkUuLPvAvkQAVfLeH5zzPE3qYHWgpbx2NsLJ8JOjLLzw1Tppdcmn3VZUmdooXS0rftat9rRBJQDYfm2SfUK0/59YYZpVQpcMaU8bwMcYoLHzUH29suMGAzLou9FsEA7KmL4lvC2jx57XrGkCjjnvVdwUsSuLuW0zcO03V98Eh5Z4kCCCBaq3aGzUIWKONjEw9aVzmw8BHptOahsQnc2EKyunhmiiaegcLy0dh4E8iABN2+mTMmf/xY=
 language: php
-
 services: mongodb
-
 php:
-  - 5.6
-  - 7.0
-
+- 5.6
+- 7.0
 before_script:
-  - pecl install -f mongodb
-#  - echo 'extension=mongodb.so' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
-  - php --ri mongodb
-  - composer --no-interaction --prefer-source install
-
+- pecl install -f mongodb
+- php --ri mongodb
+- composer --no-interaction --prefer-source install
 script:
-  - bin/phpunit --coverage-text --coverage-clover=coverage.xml --verbose
-
+- bin/phpunit --coverage-text --coverage-clover=coverage.xml --verbose
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
