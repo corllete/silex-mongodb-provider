@@ -1,8 +1,9 @@
 # silex-mongodb-provider
 
 [![Build Status](https://travis-ci.org/corllete/silex-mongodb-provider.svg?branch=master)](https://travis-ci.org/corllete/silex-mongodb-provider)
+[![codecov](https://codecov.io/gh/corllete/silex-mongodb-provider/branch/master/graph/badge.svg)](https://codecov.io/gh/corllete/silex-mongodb-provider)
 
-Silex 2.x MongoDB Service Provider - integrates [Mongo PHP Library](https://github.com/mongodb/mongo-php-library) 
+Silex 2.x MongoDB Service Provider - integrates [Mongo PHP Library](https://github.com/mongodb/mongo-php-library)
 with [Silex 2.x](https://github.com/silexphp/Silex)
 
 ## Requirements
@@ -220,7 +221,7 @@ Few things to keep in mind here:
 
 ### Container namespace
 
-By default, this service provider is registered in `mongodb.*`  and `mongodbs.*` container namespace. While reserved by the [core parameters](http://silex.sensiolabs.org/doc/master/services.html#core-parameters) and [core services namespace](http://silex.sensiolabs.org/doc/master/services.html#core-services) is something everyone must live with, I don't feel occupying namespace (e.g. `mongodb`) from thrid party service providers is a good practice. Exactly this bad feeling made me implement feature (that I personally call) `service provider namespace`. The logic behind it is extremely simple - you provide single and multi namespace values (following the logic of core `DoctrineServiceProvider` which takes `db` and `dbs` namespaces) to the service provider constructor as respectively first and second argument. 
+By default, this service provider is registered in `mongodb.*`  and `mongodbs.*` container namespace. While reserved by the [core parameters](http://silex.sensiolabs.org/doc/master/services.html#core-parameters) and [core services namespace](http://silex.sensiolabs.org/doc/master/services.html#core-services) is something everyone must live with, I don't feel occupying namespace (e.g. `mongodb`) from thrid party service providers is a good practice. Exactly this bad feeling made me implement feature (that I personally call) `service provider namespace`. The logic behind it is extremely simple - you provide single and multi namespace values (following the logic of core `DoctrineServiceProvider` which takes `db` and `dbs` namespaces) to the service provider constructor as respectively first and second argument.
 
 It's a 'behind the scenes' feature, you may or may not use it but most important - you have a choice.
 
@@ -262,7 +263,7 @@ $mongo = $app['mongodbs']['default'];
 
 ## MongoDB Client service factory
 
-If you, for any reason (unknown to me!) decide you need to manually create `\MongoDB\Client` instance, you may use the registered with `MongoDBServiceProvider` factory callable. 
+If you, for any reason (unknown to me!) decide you need to manually create `\MongoDB\Client` instance, you may use the registered with `MongoDBServiceProvider` factory callable.
 
 ```php
 $app->register(new MongoDBServiceProvider());
@@ -277,7 +278,7 @@ Factory callable accepts one argument - array of connection configuration option
 
 ## Configuration options, service parameters and services reference
 
-### Configuration options 
+### Configuration options
 
 The following describes the options passed to the `register()` container method (see examples section).
 
@@ -331,7 +332,7 @@ Retrieve or override in your code via `$app['PARAMETER_NAME']`;
 Run `phpunit` test after composer install
 
 ```
-$ composer install && bin/phpunit 
+$ composer install && bin/phpunit
 ```
 
 You may also print the coverage
