@@ -4,5 +4,5 @@ phpunit.xml
 bin/
 coverage/
 .idea/
-
+coverage.xml
 

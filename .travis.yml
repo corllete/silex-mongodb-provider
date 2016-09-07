@@ -12,4 +12,8 @@ before_script:
   - php --ri mongodb
   - composer --no-interaction --prefer-source install
 
-script: phpunit --coverage-text --verbose
+script:
+  - bin/phpunit --coverage-text --coverage-clover=coverage.xml --verbose
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
