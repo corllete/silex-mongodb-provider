@@ -77,8 +77,6 @@ class MongoDBServiceProvider implements ServiceProviderInterface
         $mns = $this->multiNamespace;
 
         // [default] mongo.default_options
-        // waiting for php 5.6 deprecation!
-        // $app[$ns.'.default_options'] = $app[$ns.'.default_options'] ?? [];
         $app[$ns.'.default_options'] = isset($app[$ns.'.default_options']) ? $app[$ns.'.default_options'] : [];
         $app[$ns.'.default_options'] += self::$defaultOptions;
 
@@ -121,8 +119,6 @@ class MongoDBServiceProvider implements ServiceProviderInterface
 
                 // it's single setup, convert to multi
                 if (!isset($app[$mns.'.options'])) {
-                    // waiting for php 5.6 deprecation!
-                    // $singleOptions = $app[$ns.'.options'] ?? [];
                     $singleOptions = isset($app[$ns.'.options']) ? $app[$ns.'.options'] : [];
                     $singleOptions += $app[$ns.'.default_options'];
 
@@ -182,12 +178,12 @@ class MongoDBServiceProvider implements ServiceProviderInterface
      */
     private function assembleUri($host, $port, $db = null, $username = null, $password = null)
     {
-        if ($db) {
+        if (!empty($db)) {
             $db = '/'.$db;
         }
 
         $cred = '';
-        if ($username && $password) {
+        if ($username !== null && $password !== null) {
             $cred = sprintf('%s:%s@', rawurlencode($username), rawurlencode($password));
         }
 
