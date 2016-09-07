@@ -419,6 +419,11 @@ class MongoDBServiceProviderTest extends TestCase
         $this->assertInstanceOf('\MongoDB\Client', $app['dbs']['default']);
     }
 
+    public function testYouDidntForgotToBumpVersionNumber()
+    {
+        $this->assertEquals('1.0.1', MongoDBServiceProvider::VERSION);
+    }
+
     public function getMultiConnectionOptions()
     {
         return [

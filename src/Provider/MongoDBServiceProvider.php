@@ -21,6 +21,8 @@ use Pimple\Container;
  */
 class MongoDBServiceProvider implements ServiceProviderInterface
 {
+    const VERSION = '1.0.1';
+    
     private $namespace;
     private $multiNamespace;
 
