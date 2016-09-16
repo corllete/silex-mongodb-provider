@@ -31,10 +31,8 @@ class MongoDBServiceProviderTest extends TestCase
         $app = new Container();
         $app->register(new MongoDBServiceProvider());
 
-        /** @var $db \MongoDB\Client */
-        $db = $app['mongodb'];
-
-        $this->assertEquals($app['mongodb.default_options']['uri'], (string) $db);
+        $this->assertEquals($app['mongodb.default_options']['host'], MongoDBServiceProvider::$defaultOptions['host']);
+        $this->assertEquals($app['mongodb.default_options']['port'], MongoDBServiceProvider::$defaultOptions['port']);
     }
 
     /**
@@ -260,6 +258,26 @@ class MongoDBServiceProviderTest extends TestCase
     }
 
     /**
+     * @covers ::assembleUri
+     * @covers ::register
+     */
+    public function testCanAssembleUriWithoutUriKey()
+    {
+        $app = new Container();
+        $app->register(new MongoDBServiceProvider(), [
+            'mongodb.options' => [
+                'host' => 'example.com',
+                'port' => '27017',
+            ]
+        ]);
+
+        /** @var $db \MongoDB\Client */
+        $db = $app['mongodb'];
+
+        $this->assertEquals('mongodb://example.com:27017', (string) $db);
+    }
+
+    /**
      * @covers ::register
      */
     public function testHasDefaultOptions()
@@ -392,7 +410,6 @@ class MongoDBServiceProviderTest extends TestCase
 
         $db = $app['mongodb.factory']();
         $this->assertInstanceOf('\MongoDB\Client', $db);
-        $this->assertEquals(MongoDBServiceProvider::$defaultOptions['uri'], (string) $db);
     }
 
     /**
