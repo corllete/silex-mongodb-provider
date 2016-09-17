@@ -38,11 +38,12 @@ class MongoDBServiceProvider implements ServiceProviderInterface
      * @link https://github.com/mongodb/mongo-php-library/blob/master/src/Client.php#L14-L18
      */
     public static $defaultOptions = [
-        'uri'            => 'mongodb://localhost:27017',
-        'host'           => null,
+        'uri'            => null,
+        'host'           => 'localhost',
         'database'       => null,
         'username'       => null,
         'password'       => null,
+        'port'           => 27017,
         'uri_options'    => [],
         'driver_options' => [
             'type_map' => [],
