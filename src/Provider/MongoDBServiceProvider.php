@@ -40,10 +40,10 @@ class MongoDBServiceProvider implements ServiceProviderInterface
     public static $defaultOptions = [
         'uri'            => null,
         'host'           => 'localhost',
+        'port'           => 27017,
         'database'       => null,
         'username'       => null,
         'password'       => null,
-        'port'           => 27017,
         'uri_options'    => [],
         'driver_options' => [
             'type_map' => [],

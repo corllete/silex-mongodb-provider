@@ -25,6 +25,7 @@ class MongoDBServiceProviderTest extends TestCase
 {
     /**
      * @covers ::register
+     * @covers ::assembleUri
      */
     public function testOptionInit()
     {
@@ -33,6 +34,16 @@ class MongoDBServiceProviderTest extends TestCase
 
         $this->assertEquals($app['mongodb.default_options']['host'], MongoDBServiceProvider::$defaultOptions['host']);
         $this->assertEquals($app['mongodb.default_options']['port'], MongoDBServiceProvider::$defaultOptions['port']);
+
+        $db = $app['mongodb'];
+        $this->assertEquals(
+            sprintf(
+                'mongodb://%s:%s',
+                MongoDBServiceProvider::$defaultOptions['host'],
+                MongoDBServiceProvider::$defaultOptions['port']
+            ), 
+            (string) $db
+        );
     }
 
     /**
@@ -129,12 +140,11 @@ class MongoDBServiceProviderTest extends TestCase
      * @covers ::assembleUri
      * @covers ::register
      */
-    public function testCanAssembleUri()
+    public function testCanAssembleMinimalUri()
     {
         $app = new Container();
         $app->register(new MongoDBServiceProvider(), [
             'mongodb.options' => [
-                'uri' => null,
                 'host' => 'example.com',
                 'port' => '27017',
             ]
@@ -144,6 +154,25 @@ class MongoDBServiceProviderTest extends TestCase
         $db = $app['mongodb'];
 
         $this->assertEquals('mongodb://example.com:27017', (string) $db);
+    }
+    /**
+     * @covers ::register
+     */
+    public function testUriOptionHasHigherPrecendenceThanAssembleOptions()
+    {
+        $app = new Container();
+        $app->register(new MongoDBServiceProvider(), [
+            'mongodb.options' => [
+                'uri' => 'mongodb://example-uri.com:1',
+                'host' => 'exmample-assemble.com',
+                'port' => '2',
+            ]
+        ]);
+
+        /** @var $db \MongoDB\Client */
+        $db = $app['mongodb'];
+
+        $this->assertEquals('mongodb://example-uri.com:1', (string) $db);
     }
 
     /**
@@ -155,7 +184,6 @@ class MongoDBServiceProviderTest extends TestCase
         $app = new Container();
         $app->register(new MongoDBServiceProvider(), [
             'mongodb.options' => [
-                'uri' => null,
                 'host' => 'example.com',
                 'port' => '27017',
                 'username' => 'user',
@@ -176,7 +204,6 @@ class MongoDBServiceProviderTest extends TestCase
         $app = new Container();
         $app->register(new MongoDBServiceProvider(), [
             'mongodb.options' => [
-                'uri' => null,
                 'host' => 'example.com',
                 'port' => '27017',
                 'database' => 'test',
@@ -188,7 +215,6 @@ class MongoDBServiceProviderTest extends TestCase
         $app = new Container();
         $app->register(new MongoDBServiceProvider(), [
             'mongodb.options' => [
-                'uri' => null,
                 'host' => 'example.com',
                 'port' => '27017',
                 'username' => 'user',
@@ -208,7 +234,6 @@ class MongoDBServiceProviderTest extends TestCase
         $app = new Container();
         $app->register(new MongoDBServiceProvider(), [
             'mongodb.options' => [
-                'uri' => null,
                 'host' => 'example.com',
                 'port' => '27017',
                 'username' => 'user',
@@ -220,7 +245,6 @@ class MongoDBServiceProviderTest extends TestCase
         $app = new Container();
         $app->register(new MongoDBServiceProvider(), [
             'mongodb.options' => [
-                'uri' => null,
                 'host' => 'example.com',
                 'port' => '27017',
                 'password' => 'pwd',
@@ -242,7 +266,6 @@ class MongoDBServiceProviderTest extends TestCase
         $app = new Container();
         $app->register(new MongoDBServiceProvider(), [
             'mongodb.options' => [
-                'uri' => null,
                 'host' => 'example.com',
                 'port' => '27017',
                 'username' => $user,
