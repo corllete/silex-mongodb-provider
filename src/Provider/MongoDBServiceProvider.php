@@ -21,7 +21,7 @@ use Pimple\Container;
  */
 class MongoDBServiceProvider implements ServiceProviderInterface
 {
-    const VERSION = '1.0.1';
+    const VERSION = '1.1.0';
     
     private $namespace;
     private $multiNamespace;
@@ -40,10 +40,10 @@ class MongoDBServiceProvider implements ServiceProviderInterface
     public static $defaultOptions = [
         'uri'            => null,
         'host'           => 'localhost',
+        'port'           => 27017,
         'database'       => null,
         'username'       => null,
         'password'       => null,
-        'port'           => 27017,
         'uri_options'    => [],
         'driver_options' => [
             'type_map' => [],

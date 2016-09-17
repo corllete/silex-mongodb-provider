@@ -5,7 +5,7 @@
 [![Scrutinizer Code
 Quality](https://scrutinizer-ci.com/g/corllete/silex-mongodb-provider/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/corllete/silex-mongodb-provider/?branch=master)
 
-Silex 2.x MongoDB Service Provider - integrates [Mongo PHP Library](https://github.com/mongodb/mongo-php-library)
+Silex MongoDB Service Provider - integrates [Mongo PHP Library](https://github.com/mongodb/mongo-php-library)
 with [Silex 2.x](https://github.com/silexphp/Silex)
 
 ## Requirements
@@ -206,7 +206,6 @@ $second = $app['mongodbs']['default'];
 // resulting in uri: 'mongodb://username:password@example.com:27017/some_db'
 $app->register(new MongoDBServiceProvider(), [
     'mongodb.options' => [
-        'uri' => null,
         'host' => 'example.com',
         'port' => '27017',
         'username' => 'user',
@@ -216,7 +215,6 @@ $app->register(new MongoDBServiceProvider(), [
 ]);
 ```
 Few things to keep in mind here:
-- you HAVE to explicit reset `uri` as it contains default connection string and `uri` has higher precedence than the other connection options
 - `host` and `port` are required in this configuration scenario, no defaults fallback
 - if you provide `username`, `password` is required
 - `database` is optional in all cases
@@ -291,8 +289,9 @@ The following describes the options passed to the `register()` container method 
 - `mongodb.default_options` (`array`) - options used for zero configuration (or the factory service) in same format as `mongodb.options`. You may override it directly in your bootstrap code to change default behaviour. The default value of this option:
 ```php
 'mongodb.default_options' => [
-    'uri'            => 'mongodb://localhost:27017',
-    'host'           => null,
+    'uri'            => null,
+    'host'           => 'localhost',
+    'port'           => 27017,
     'database'       => null,
     'username'       => null,
     'password'       => null,
