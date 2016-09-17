@@ -461,7 +461,7 @@ class MongoDBServiceProviderTest extends TestCase
 
     public function testYouDidntForgotToBumpVersionNumber()
     {
-        $this->assertEquals('1.0.1', MongoDBServiceProvider::VERSION);
+        $this->assertEquals('1.1.0', MongoDBServiceProvider::VERSION);
     }
 
     public function getMultiConnectionOptions()

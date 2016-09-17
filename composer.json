@@ -7,6 +7,10 @@
         {
             "name": "Miro Yovchev",
             "email": "m.yovchev@corllete.com"
+        },
+        {
+            "name": "Corllete Team",
+            "homepage": "http://corllete.com/about-us"
         }
     ],
     "require": {
@@ -25,5 +29,10 @@
     },
     "autoload-dev": {
         "psr-4": { "Corllete\\SilexMongoDB\\Tests\\" : "tests/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.2-dev"
+        }
     }
 }

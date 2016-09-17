@@ -5,7 +5,7 @@
 [![Scrutinizer Code
 Quality](https://scrutinizer-ci.com/g/corllete/silex-mongodb-provider/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/corllete/silex-mongodb-provider/?branch=master)
 
-Silex 2.x MongoDB Service Provider - integrates [Mongo PHP Library](https://github.com/mongodb/mongo-php-library)
+Silex MongoDB Service Provider - integrates [Mongo PHP Library](https://github.com/mongodb/mongo-php-library)
 with [Silex 2.x](https://github.com/silexphp/Silex)
 
 ## Requirements
